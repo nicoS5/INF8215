@@ -31,10 +31,10 @@ constraint forall(i in 1..n, j in 1..n where i != j) (sum(k in 1..n)(abs(x[i,k] 
 % constraint 5
 constraint forall(i in 1..n, j in 1..n where i != j) (sum(k in 1..n)(abs(x[k,i] - x[k,j])) != 0);
 
-% constraint 6 
-constraint x[1,1] = 0;
-constraint x[10,1] = 0;
-constraint x[10,10] = 1;
+% constraint 6 (commenter si on choisit un fichier dans "data")
+% constraint x[1,1] = 0;
+% constraint x[10,1] = 0;
+% constraint x[10,10] = 1;
 
 output [
    if j = 1 then "\n" else " " endif ++
