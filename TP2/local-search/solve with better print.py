@@ -1,4 +1,5 @@
 import random
+import time
 from generator_problem import GeneratorProblem
 
 class Solve:
@@ -39,6 +40,10 @@ class Solve:
         print("[SOLUTION-COST]", total_cost)
         
     def solve_genetic(self):
+
+        print("Solve with a genetic algorithm")
+        print("The devices are associated to the closest generator", "\n")
+        tps1 = time.time()
         
         ### Declaration de constante
         pop_size = 50
@@ -48,10 +53,20 @@ class Solve:
         
         ### Initailisation de la population
         list_of_good_solutions = init_population(pop_size, self, proportion_retenue, nb_solution_gardée)
+        tps5 = time.time()
+        print("TEMPS ITERATION i = 0 : ", round(tps5 - tps1, 2), "\n")
         
         ### Evolution de la polulation
+        first_best_gen = 0
         for i in range(0, nb_generation_max):
+            old_solution_cost = list_of_good_solutions[0][1]
             list_of_good_solutions = next_generation(list_of_good_solutions, pop_size, nb_solution_gardée, self) 
+            if (old_solution_cost > list_of_good_solutions[0][1]):
+                first_best_gen = i+1
+            tps4 = time.time()
+            print("Best Solution :", list_of_good_solutions[0])
+            print("First generation with solution :", first_best_gen)
+            print("TEMPS ITERATION i =", i+1," : ", round(tps4 - tps1, 2), "\n")
         
         ### Association des machines aux générateurs pour la meilleur solution
         solution = list_of_good_solutions[0][0]
@@ -67,6 +82,8 @@ class Solve:
         
         ### Affichage de la meilleur solution
         self.instance.plot_solution(assigned_generators, solution)
+        tps2 = time.time()
+        print("TEMPS D'EXECUTION : ", round(tps2 - tps1, 2), "\n")
         print("[ASSIGNED-GENERATOR]", assigned_generators)
         print("[OPENED-GENERATOR]", solution)
         print("[SOLUTION-COST]", total_cost)
