@@ -10,7 +10,7 @@ def parse_arguments():
     # Instances parameters
     parser.add_argument('--n_generator', type=int, default=25) #default=25
     parser.add_argument('--n_device', type=int, default=100) #default=100
-    parser.add_argument('--seed', type=int, default=1) #default=1
+    parser.add_argument('--seed', type=int, default=2) #default=1
 
     return parser.parse_args()
 
